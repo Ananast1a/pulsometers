@@ -1,7 +1,7 @@
 {
   "name": "uber",
   "version": "1.0.0",
-  "description": "uber learning",
+  "description": "pulsometer",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

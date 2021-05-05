@@ -32,4 +32,54 @@ $(document).ready(function () {
     toggleSlide('.catalog-item__link');
     toggleSlide('.catalog-item__back');
 
+
+    // Modal
+
+    $('[data-modal=consultation]').on('click', function() {
+        $('.overlay, #consultation').fadeIn('fast');
+    });
+
+    $('.modal__close').on('click', function() {
+        $('.overlay, #consultation, #order, #thanks').fadeOut('fast');
+    });
+
+    $('.button_mini').each(function(i) {
+        $(this).on('click', function() {
+            $('#order .modal__descr').text($('.catalog-item__subtitle').eq(i).text());
+            $('.overlay, #order').fadeIn('fast');
+        });
+    });
+
+    function validateForms(form) {
+        $(form).validate({
+            rules: {
+                name: {
+                    required: true,
+                    minlength: 10
+                  },
+                phone: "required",
+                email: {
+                    required: true,
+                    email: true
+                }
+            },
+            messages: {
+                name: {
+                    required: "Будь-ласка, введіть ім'я",
+                    minlength: jQuery.validator.format("Мінімум {0} символів!")
+                  },      
+                phone: "Будь-ласка, введіть телефон",
+                email: {
+                  required: "Будь-ласка, введіть пошту",
+                  email: "Неправильна пошта"
+                }
+              }
+        }); 
+    }
+
+    validateForms('#consultation-form');
+    validateForms('#consultation form');
+    validateForms('#order form');
+
+    $('input[name=phone]').mask("+38 (999) 999-99-99");
 });
